@@ -7,9 +7,7 @@ from selenium.webdriver.chrome.options import Options
 
 # List of companies and invitation note
 companies = ["HP", "Apple", "samsung"]
-connection_message = ("Hello! "
-                      "As a final-year software engineering student actively seeking an internship for my end-of-studies project, "
-                      "I look forward to connecting and possibly discussing an interview opportunity!")
+connection_message = ("your message here")
 
 chrome_service = Service('D:/software/chromedriver-win64/chromedriver.exe')
 
