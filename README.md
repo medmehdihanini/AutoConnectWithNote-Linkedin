@@ -1,79 +1,56 @@
 # LinkedIn Connection Automation Script
 
-Ce script automatise l'envoi de demandes de connexion personnalisées sur LinkedIn. Il recherche des recruteurs dans les entreprises spécifiées et envoie une demande de connexion avec un message personnalisé.
+This script automates the sending of personalized LinkedIn connection requests. It searches for recruiters at specified companies and sends a connection request with a custom message.
 
-## Prérequis
+## Prerequisites
 
-1. **Google Chrome** : Assurez-vous que Google Chrome est installé sur votre ordinateur.
+1. **Google Chrome**: Make sure Google Chrome is installed on your computer.
 
-2. **ChromeDriver** : Téléchargez ChromeDriver compatible avec votre version de Chrome :
-   - Visitez la [page de téléchargement de ChromeDriver](https://sites.google.com/chromium.org/driver/).
-   - Téléchargez la version correspondant à votre version de Chrome.
-   - Extrayez le fichier et notez son chemin d'accès ; vous en aurez besoin plus tard.
+2. **ChromeDriver**: Download ChromeDriver compatible with your version of Chrome:
+   - Visit the [ChromeDriver download page](https://sites.google.com/chromium.org/driver/).
+   - Download the version that matches your Chrome version.
+   - Extract the file and note its path; you’ll need it later.
 
-3. **Python** : Assurez-vous que Python est installé. Vous pouvez le télécharger depuis [python.org](https://www.python.org/downloads/).
+3. **Python**: Ensure Python is installed. You can download it from [python.org](https://www.python.org/downloads/).
 
-4. **Bibliothèque Selenium** : Installez Selenium via pip :
+4. **Selenium Library**: Install Selenium via pip:
    ```bash
    pip install selenium
+## Setup
 
+1. **Clone or Download the Repository**:
+   - Clone this GitHub repository or download the code to your local machine.
 
-## Configuration
-
-1. **Cloner ou Télécharger le Référentiel** :
-   - Clonez ce référentiel GitHub ou téléchargez le code sur votre machine locale.
-
-2. **Spécifiez le Chemin vers ChromeDriver** :
-   - Mettez à jour le chemin `chrome_service` dans le code avec l'emplacement où vous avez enregistré `chromedriver.exe` :
+2. **Specify the Path to ChromeDriver**:
+   - Update the `chrome_service` path in the code to the location where you saved `chromedriver.exe`:
      ```python
      chrome_service = Service('D:/software/chromedriver-win64/chromedriver.exe')
      ```
 
-3. **Spécifiez le Chemin vers Chrome** :
-   - Définissez le chemin de votre navigateur Chrome dans `chrome_options.binary_location` :
+3. **Specify the Path to Chrome**:
+   - Set the path to your Chrome browser in `chrome_options.binary_location`:
      ```python
      chrome_options.binary_location = "C:/Program Files/Google/Chrome/Application/chrome.exe"
      ```
 
-4. **Spécifiez Votre Profil Chrome** :
-   - Utilisez le chemin de votre profil utilisateur Chrome pour rester connecté à LinkedIn. Remplacez `"user-data-dir=C:/Users/mehdi/AppData/Local/Google/Chrome/User Data"` par le chemin de votre dossier de profil.
+4. **Specify Your Chrome Profile Path**:
+   - Use your Chrome user profile path to stay logged into LinkedIn. Replace `"user-data-dir=C:/Users/yourname/AppData/Local/Google/Chrome/User Data"` with your own profile folder path.
 
-## Utilisation
+## How It Works
 
-1. **Modifier la Liste des Entreprises** :
-   - Modifiez la liste `companies` avec les noms des entreprises auprès desquelles vous souhaitez envoyer des demandes de connexion :
-     ```python
-     companies = ["HP", "Apple", "samsung"]
-     ```
+1. The script opens Chrome with your user profile, logging into LinkedIn.
+2. It searches for LinkedIn recruiters at each specified company.
+3. For each recruiter, it:
+   - Clicks the "Connect" button.
+   - Adds a personalized message.
+   - Sends the connection request.
 
-2. **Modifier le Message de Connexion** :
-   - Personnalisez le `connection_message` avec votre propre message à envoyer avec chaque demande :
-     ```python
-     connection_message = ("Bonjour ! En tant qu'étudiant en dernière année de génie logiciel ...")
-     ```
+4. **Error Handling**:
+   - The script skips recruiters if an error occurs and logs an error message.
 
-3. **Exécuter le Script** :
-   - Exécutez le script avec la commande suivante :
-     ```bash
-     python nom_du_script.py
-     ```
-   - **Note** : Assurez-vous que Chrome est fermé avant d'exécuter le script pour éviter les conflits de profil.
+5. Once all connection requests are sent, the script automatically closes the browser.
 
-## Fonctionnement
+## Troubleshooting
 
-1. Le script lance Chrome avec votre profil utilisateur, accédant à LinkedIn en mode connecté.
-2. Il recherche des recruteurs LinkedIn dans chaque entreprise spécifiée.
-3. Pour chaque recruteur, il :
-   - Clique sur le bouton "Se connecter".
-   - Ajoute un message personnalisé.
-   - Envoie la demande de connexion.
-
-4. **Gestion des Erreurs** :
-   - Le script ignorera un recruteur si une erreur se produit et affichera un message d'erreur.
-
-5. Après l'envoi de toutes les demandes de connexion, le script ferme automatiquement le navigateur.
-
-## Dépannage
-
-- **Incompatibilité de Version de ChromeDriver** : Assurez-vous que votre version de ChromeDriver correspond à la version de votre navigateur Chrome.
-- **Captchas LinkedIn** : Une utilisation excessive de ce script peut déclencher des captchas. Utilisez-le de manière responsable pour éviter les restrictions de compte.
+- **ChromeDriver Version Compatibility**: Ensure your ChromeDriver version matches your Chrome browser version.
+- **LinkedIn Captchas**: Excessive use of this script may trigger captchas. Use responsibly to avoid account restrictions.
